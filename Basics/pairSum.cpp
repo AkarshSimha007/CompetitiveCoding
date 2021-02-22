@@ -2,6 +2,9 @@
 #include<climits>
 using namespace std;
 
+
+//Computing the pair sum in an array. Array should be sorted. Time complexity is O(n).
+
 bool pairSum(int arr[],int n,int k){
     int low=0,high=n-1;
 
