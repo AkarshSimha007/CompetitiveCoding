@@ -8,6 +8,6 @@ int updateBit(int n,int pos,int value){
 }
 
 int main(){
-    cout<<updateBit(5,1,1);
+    cout<<updateBit(7,1,0);
     return 0;
 }
