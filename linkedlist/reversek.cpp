@@ -42,52 +42,28 @@ void display(node* head){
    cout<<"NULL"<<endl;
 }
 
-void deletenode(node* &head,int val){
-    if(head==NULL){
-        return;
-    }
-    node* temp=head;
-    while(temp->next->data!=val){
-        temp=temp->next;
-    }
-    node* todelete=temp->next;
-    temp->next=temp->next->next;
-    delete todelete;
-}
 
-node* reverse(node *head){
+node* reversek(node* &head,int k){
     node* prevptr=NULL;
     node* curptr=head;
     node* nextptr;
+    int count=0;
 
-    while(curptr!=NULL){
+    while(curptr!=NULL && count<k){
         nextptr=curptr->next;
         curptr->next=prevptr;
         prevptr=curptr;
         curptr=nextptr;
+        count++;
+    }
+
+    if(nextptr!=NULL){
+        head->next=reversek(nextptr,k);
     }
     return prevptr;
 }
 
-node* reversek(node* &head,int k){
-    node* prevvptr=NULL;
-    node* currptr=head;
-    node* nexttptr;
-    int count=0;
 
-    while(currptr!=NULL && count<k){
-        nexttptr=currptr->next;
-        currptr->next=prevvptr;
-        prevvptr=currptr;
-        currptr=nexttptr;
-        count++;
-    }
-
-    if(nexttptr!=NULL){
-        head->next=reversek(nexttptr,k);
-    }
-    return prevvptr;
-}
 
 int main(){
     node* head=NULL;
@@ -99,7 +75,6 @@ int main(){
     insert(head,30);
     display(head);
 
-    node* newhead=reverse(head);
-    display(newhead);
-
+    node* reversekhead=reversek(head,2);
+    display(reversekhead);
 }
